@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Лабораторная 10</title>
+		<link rel="stylesheet" href="style.css">
+	</head>
+	
+	<body>
+		<div class="header">
+			<h1>Лабораторная 10</h1>
+			<li><a href="index1.html">ССЫЛКА</a></li>			
+		</div>		
+		<style>
+		td {
+			width: 25px;
+			height: 25px;
+		}
+
+		.white {
+			background-color: #ffffff;
+		}
+
+		.black {
+			background-color: #000000;
+		}
+		</style>
+		
+		<div class="Block1">
+			<button onclick="task1(5)">Задача 1</button><br>
+			<button onclick="task2('MaKs im', 'Kam Sim')"> Задача 2</button><br>
+			<button onclick="task3('Hello, World!')">Задача 3</button><br>
+			<button onclick="task4(7)">Задача 4</button><br>
+			<button onclick="task5()">Задача 5</button><br>
+			<button onclick="task6()">Задача 6</button><br>	
+			<button onclick="task7(777, 7777)">Задача 7</button><br>
+
+			<button onclick="task8(50)">Задача 8 - значение 50</button><br>
+			<button onclick="task8(75)">Задача 8 - значение 75</button><br>
+			<button onclick="task8(-1)">Задача 8 - значение -1</button><br>			
+			
+			<button onclick="countBs('BBC')">Задача 9 - 'BBC'</button><br>	
+			<button onclick="countChar('kakkerlak', 'k')">Задача 9 - 'kakkerlak', 'k'</button><br>	
+			
+			<button onclick="alert(sum(range(1, 10)))">Задача 10 - sum(range(1, 10))</button><br>
+			<button onclick="alert(range(1, 10, 2))">Задача 10 - range(1, 10, 2)</button><br>	
+			<button onclick="alert(range(5, 2, -1))">Задача 10 - range(5, 2, -1)</button><br>
+			
+			<button onclick="alert(reverseArray(1, 2, 3, 4, 5))">Задача 11 - reverseArray(1, 2, 3, 4, 5)</button><br>
+			<button onclick="alert(reverseArrayInPlace(1, 2, 3, 4, 5))">Задача 11 - reverseArrayInPlace(1, 2, 3, 4, 5)</button><br>
+			
+			<button onclick="alert(deepEqual({ a: 1, b: 2 },{ a: 1, b: 2 }))">Задача 12 - deepEqual({ a: 1, b: 2 },{ a: 1, b: 2 }))</button><br>			
+			<button onclick="alert(deepEqual({ a: 1, b: 2 },{ a: 2, b: 2 }))">Задача 12 - deepEqual({ a: 1, b: 2 },{ a: 2, b: 2 })</button><br>
+			
+			<button onclick="alert(task13())">Задача 13</button><br>
+			<div id="result">Тут будет ответ!!!</div>			
+		</div>
+		
+		<script>
+		function task1(n) {
+		var arr = [10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,30];
+		var result ="";
+		for (var i = 0; i < arr.length; i++) {
+			if (arr[i] % n === 0) {
+			result += arr[i] + " ";
+			}
+		}
+		document.getElementById('result').innerHTML = result;
+		}
+		
+		function task2(str1, str2) {
+			// Удаляем пробелы и приводим строки к нижнему регистру
+			str1 = str1.replace(/[^\w]/g, "").toLowerCase();
+			str2 = str2.replace(/[^\w]/g, "").toLowerCase();
+
+			// Сортируем символы в обеих строках
+			var sortedStr1 = str1.split("").sort().join("");
+			var sortedStr2 = str2.split("").sort().join("");
+	
+			// Сравниваем отсортированные строки
+			document.getElementById('result').innerHTML = sortedStr1 === sortedStr2 
+		}
+		
+		function task3(str) {
+		// Приводим строку к нижнему регистру для учета всех возможных вариантов гласных
+		str = str.toLowerCase();
+
+		var vowels = ['a', 'e', 'i', 'o', 'u'];
+		var count = 0;
+
+		for (var i = 0; i < str.length; i++) {
+			if (vowels.includes(str[i])) {
+				count++;
+			}
+		}
+
+		document.getElementById('result').innerHTML = count;
+		}
+		
+		function task4(rows) {
+			var result = "";
+
+			for (var i = 1; i <= rows; i++) {
+				result += i + " ";
+				for (var j = 1; j <= i; j++) {
+					result += "#";
+				}
+				result += `<br>`;
+			}
+
+			document.getElementById('result').innerHTML = result;
+		}
+		
+		function task5() {
+			for (var i = 1; i <= 100; i++) {
+				if (i % 3 === 0 && i % 5 === 0) {
+					console.log('FizzBuzz');
+				} else if (i % 3 === 0) {
+					console.log('Fizz');
+				} else if (i % 5 === 0) {
+					console.log('Buzz');
+				} else {
+					console.log(i);
+				}
+			}
+		}
+		
+		function task6() {
+			var size = 8;
+			var chessboard = '<table>';
+
+			for (var row = 0; row < size; row++) {
+				chessboard += '<tr>';
+				for (var col = 0; col < size; col++) {
+					// Проверяем четность суммы индексов строки и столбца
+					if ((row + col) % 2 === 0) {
+						chessboard += '<td class="white"> </td>';
+					} else {
+						chessboard += '<td class="black">#</td>';
+					}	
+				}
+				chessboard += '</tr>';
+			}
+			chessboard += '</table>';
+			document.getElementById('result').innerHTML = chessboard;
+		}
+		
+		function task7(a, b) {
+			document.getElementById('result').innerHTML = (a<b ? a : b)
+		}
+		
+		function task8(number) {
+			// Приведение числа к неотрицательному значению
+			var num = Math.abs(number);
+
+			// Базовые случаи
+			if (num === 0) {
+				document.getElementById('result').innerHTML = true;  // Ноль чётный
+			}
+			if (num === 1) {
+				document.getElementById('result').innerHTML = false;  // Единица нечётная
+			}
+
+			// Рекурсивный вызов с уменьшением числа на 2
+			document.getElementById('result').innerHTML = task8(num - 2);
+		}
+		
+		//task 9
+		function countBs(str) {
+			let count = 0;
+			for (let i = 0; i < str.length; i++) {
+				if (str.charAt(i) === 'B') {
+					count++;
+				}
+			}
+			document.getElementById('result').innerHTML = count;
+		}
+
+		function countChar(str, char) {
+			let count = 0;
+			for (let i = 0; i < str.length; i++) {
+				if (str.charAt(i) === char) {
+					count++;
+				}
+			}
+			document.getElementById('result').innerHTML = count;
+		}
+		
+		//task 10
+		
+		function range(start, end, step = 1) {
+			let arr = [];
+			if (step > 0) {
+				for (let i = start; i <= end; i += step) {
+					arr.push(i);
+				}
+			} else {
+				for (let i = start; i >= end; i += step) {
+					arr.push(i);
+				}
+			}
+			return arr;
+		}
+
+		function sum(arr) {
+			let total = 0;
+			for (let num of arr) {
+				total += num;
+			}
+			return total;
+		}
+		
+		//task 11
+		
+		function reverseArray(...arr) {
+			let reversedArr = [];
+			for (let i = arr.length - 1; i >= 0; i--) {
+				reversedArr.push(arr[i]);
+			}
+			return reversedArr;
+		}
+
+		function reverseArrayInPlace(...arr) {
+			for (let i = 0; i < Math.floor(arr.length / 2); i++) {
+				let temp = arr[i];
+				arr[i] = arr[arr.length - 1 - i];
+				arr[arr.length - 1 - i] = temp;
+			}
+			return arr;
+		}
+		
+		//task12
+		function deepEqual(value1, value2) {
+			if (value1 === value2) {
+				return true;
+			}
+			
+			if (typeof value1 !== "object" || value1 === null || typeof value2 !== "object" || value2 === null) {
+				return false;
+			}
+
+			let keys1 = Object.keys(value1);
+			let keys2 = Object.keys(value2);
+
+			if (keys1.length !== keys2.length) {
+				return false;
+			}
+
+			for (let key of keys1) {
+				if (!keys2.includes(key) || !deepEqual(value1[key], value2[key])) {
+					return false;
+				}
+			}
+
+			return true;
+		}
+		
+		
+		function task13() {
+			const arrays = [[1, 2, 3], [4, 5], [6]];
+			return arrays.reduce((result, currentArray) => result.concat(currentArray), []);
+		}
+
+		
+		</script>		
+
+		<footer>
+			<p>Выполнено © Морошкином Максимом</p>
+		</footer>
+	</body>
+</html>	
